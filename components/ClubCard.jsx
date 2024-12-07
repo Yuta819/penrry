@@ -1,15 +1,17 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export function ClubCard({
-  name,
-  description,
-  imageUrl
-}) {
+export function ClubCard({ name, description, imageUrl }) {
   return (
-    (<Card>
+    <Card>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
@@ -19,7 +21,8 @@ export function ClubCard({
           alt={`${name}の活動写真`}
           width={400}
           height={200}
-          className="rounded-md object-cover mb-4" />
+          className="rounded-md object-cover mb-4"
+        />
         <p className="text-muted-foreground">{description}</p>
       </CardContent>
       <CardFooter>
@@ -27,7 +30,6 @@ export function ClubCard({
           <Link href="#">詳細を見る</Link>
         </Button>
       </CardFooter>
-    </Card>)
+    </Card>
   );
 }
-

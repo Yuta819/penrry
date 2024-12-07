@@ -10,24 +10,24 @@ export function Navigation() {
     "ライフスタイル",
     "ビジネス",
     "グルメ",
-    "スポーツ"
-  ]
+    "スポーツ",
+  ];
 
   return (
-    (<nav className="bg-white border-b">
+    <nav className="bg-white border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center space-x-6 overflow-x-auto py-3">
           {categories.map((category) => (
             <a
               key={category}
               href="#"
-              className="text-sm text-muted-foreground whitespace-nowrap hover:text-foreground">
+              className="text-sm text-muted-foreground whitespace-nowrap hover:text-foreground"
+            >
               {category}
             </a>
           ))}
         </div>
       </div>
-    </nav>)
+    </nav>
   );
 }
-

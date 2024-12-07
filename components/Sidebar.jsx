@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function Sidebar() {
   return (
-    (<div className="space-y-6">
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">統計情報</CardTitle>
@@ -24,7 +24,6 @@ export function Sidebar() {
           </div>
         </CardContent>
       </Card>
-    </div>)
+    </div>
   );
 }
-
