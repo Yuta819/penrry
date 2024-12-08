@@ -1,7 +1,16 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+
+interface FloatingPanelProps {
+  image: string; // 画像URL（public配下、または許可された外部URL）
+  title: string; // タイトルテキスト
+  description: string; // 説明テキスト
+  size: number; // パネルの一辺のサイズ(px)
+  rotateY: number; // 初期のY軸回転角度
+  rotateX: number; // 初期のX軸回転角度
+}
 
 export function FloatingPanel({
   image,
@@ -10,12 +19,11 @@ export function FloatingPanel({
   size,
   rotateY,
   rotateX,
-}) {
+}: FloatingPanelProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      className="relative cursor-pointer"
       style={{
         width: `${size}px`,
         height: `${size}px`,
@@ -30,20 +38,15 @@ export function FloatingPanel({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <motion.div
-        className="absolute inset-0 rounded-lg shadow-lg"
-        style={{ backfaceVisibility: "hidden" }}
-      >
+      <motion.div style={{ backfaceVisibility: "hidden" }}>
         <Image
           src={image}
           alt={title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
+          fill // layout="fill"の代替
+          className="rounded-lg object-cover"
         />
       </motion.div>
       <motion.div
-        className="absolute inset-0 bg-blue-500 rounded-lg flex items-center justify-center"
         style={{
           backfaceVisibility: "hidden",
           transform: "rotateY(180deg)",

@@ -18,7 +18,7 @@ export function MovingImages() {
     const container = containerRef.current;
     if (!container) return;
 
-    let animationId;
+    let animationId: number;
     let position = 0;
 
     const animate = () => {
@@ -26,7 +26,7 @@ export function MovingImages() {
       if (position <= -100) {
         position = 0;
       }
-      container.style.transform = `translateX(${position}%)`;
+      (container as HTMLElement).style.transform = `translateX(${position}%)`;
       animationId = requestAnimationFrame(animate);
     };
 

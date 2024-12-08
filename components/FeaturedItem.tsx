@@ -1,7 +1,19 @@
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 
-export function FeaturedItem({ number, image, title, company, time }) {
+export function FeaturedItem({
+  number,
+  image,
+  title,
+  company,
+  time,
+}: {
+  number: number;
+  image: string;
+  title: string;
+  company: string;
+  time: string;
+}) {
   return (
     <Card className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl">
       <CardContent className="p-0">

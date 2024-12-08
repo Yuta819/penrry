@@ -1,10 +1,16 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useAnimation, AnimationControls } from "framer-motion";
 import { FloatingPanel } from "./FloatingPanel";
 
-const panels = [
+interface Panel {
+  image: string;
+  title: string;
+  description: string;
+}
+
+const panels: Panel[] = [
   {
     image: "/placeholder.svg?height=400&width=400&text=Sports",
     title: "スポーツ",
@@ -33,8 +39,8 @@ const panels = [
 ];
 
 export function FloatingPanelsSection() {
-  const containerRef = useRef(null);
-  const controls = useAnimation();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const controls: AnimationControls = useAnimation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -48,7 +54,7 @@ export function FloatingPanelsSection() {
 
   useEffect(() => {
     const initialAnimation = async () => {
-      await controls.start((i) => ({
+      await controls.start((i: number) => ({
         y: ["-100vh", "0vh"],
         x: isMobile
           ? "0%"
@@ -62,7 +68,7 @@ export function FloatingPanelsSection() {
       }));
 
       setInterval(() => {
-        controls.start((i) => ({
+        controls.start((i: number) => ({
           y: ["100vh", "0vh"],
           x: isMobile
             ? "0%"
@@ -84,10 +90,10 @@ export function FloatingPanelsSection() {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleMouseMove = (e) => {
-      const { left, top, width, height } = container.getBoundingClientRect();
-      const x = (e.clientX - left) / width;
-      const y = (e.clientY - top) / height;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
 
       container.style.setProperty("--mouse-x", `${x}`);
       container.style.setProperty("--mouse-y", `${y}`);
@@ -113,10 +119,10 @@ export function FloatingPanelsSection() {
         const size = isMobile ? 150 : Math.random() * (300 - 200) + 200;
         const rotateY = isMobile ? 0 : (Math.random() - 0.5) * 30;
         const rotateX = isMobile ? 0 : (Math.random() - 0.5) * 30;
+
         return (
           <motion.div
             key={panel.title}
-            className="absolute"
             custom={index}
             animate={controls}
             style={{
@@ -130,7 +136,9 @@ export function FloatingPanelsSection() {
             }}
           >
             <FloatingPanel
-              {...panel}
+              image={panel.image}
+              title={panel.title}
+              description={panel.description}
               size={size}
               rotateY={rotateY}
               rotateX={rotateX}
