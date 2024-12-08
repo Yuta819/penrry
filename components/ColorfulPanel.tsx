@@ -3,15 +3,16 @@
 "use client";
 
 import Image from "next/image";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion, HTMLMotionProps, MotionProps } from "framer-motion";
 import React from "react";
 
 // ColorfulPanelPropsインターフェースを定義
-interface ColorfulPanelProps extends HTMLMotionProps<"div"> {
+interface ColorfulPanelProps extends MotionProps {
   title: string;
   category: string;
   image: string;
   color: string;
+  className?: string;
 }
 
 export function ColorfulPanel({
@@ -25,13 +26,13 @@ export function ColorfulPanel({
 }: ColorfulPanelProps) {
   return (
     <motion.div
-      {...rest}
       style={{ position: "relative", ...style }}
       className={`relative aspect-square overflow-hidden rounded-lg cursor-pointer ${
         className || ""
       }`}
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.3 }}
+      {...rest}
       // @ts-ignore
     >
       <Image src={image} alt={title} fill className="z-0 object-cover" />

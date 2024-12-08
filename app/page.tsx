@@ -1,3 +1,5 @@
+"use client";
+
 import { MainLayout } from "../components/MainLayout";
 import { FloatingPanelsSection } from "../components/FloatingPanelsSection";
 import { WorksSection } from "../components/WorksSection";
